@@ -43,7 +43,7 @@ public class UserController {
     @PatchMapping("/account/{userId}")
     public ResponseEntity<?> patchAccountId(@RequestBody UserPatchAccountDTO userPatchAccountDTO, @PathVariable("userId") Long userId) {
         try {
-            User updatedUser = userService.patchAccountId(userId, userPatchAccountDTO.getAccountID());
+            ResponseEntity<?> updatedUser = userService.patchAccountId(userId, userPatchAccountDTO.getAccountID());
             return new ResponseEntity<>(updatedUser, HttpStatus.ACCEPTED);
         } catch (UserNotFoundException exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
